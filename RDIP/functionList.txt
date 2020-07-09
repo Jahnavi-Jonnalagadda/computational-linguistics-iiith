@@ -1,0 +1,11 @@
+List of Functionalities:
+
+1. dropdown()
+2. englishDropdown()
+3. hindiDropdown()
+4. displayWordButtons()
+5. selectWord()
+6. reformSentence()
+7. checkValidSentence()
+8. getCorrectSentence()
+9. hideCorrectSentence()
