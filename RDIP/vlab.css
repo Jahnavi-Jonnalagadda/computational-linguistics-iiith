@@ -1,0 +1,28 @@
+#mySelect{
+    margin-top: 250px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    margin-left: 550px;
+}
+
+#select1{
+    margin-top: 20px;
+}
+
+#select2{
+    margin-top: 50px;
+}
+
+#text1{
+    margin-left: 300px;
+    font-family: Lucida Sans Unicode;
+    color: #0000AA;
+    font-weight: bold;
+}
+
+#text2{
+    margin-left: 500px;
+    font-style: italic;
+    color: #0000FF;
+    font-family: Lucida Sans Unicode;
+}
