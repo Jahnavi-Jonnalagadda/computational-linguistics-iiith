@@ -1,13 +1,17 @@
 #heading{
     font-size: 30px;
     color: #222222;
+    font-weight: bold;
+    font-family: Lucida Sans Unicode;
 }
 
 #selectLang{
-    margin-top: 250px;
+    margin-top: 100px;
     margin-right: 100px;
     margin-bottom: 50px;
     margin-left: 550px;
+    font-size: 20px;
+    border: 2px solid black;
 }
 
 #initial-msg-1{
@@ -69,6 +73,7 @@
     cursor: pointer;
     margin:10px;
     padding :5px;
+    border :1px solid black;
 }
 
 #correct-answer{
