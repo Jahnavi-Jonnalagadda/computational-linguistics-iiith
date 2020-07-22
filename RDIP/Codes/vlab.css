@@ -64,9 +64,8 @@
     margin-top:10px;
 }
 
-#reform-button{
+#reform-button, #check-correctness-sentence{
     cursor: pointer;
     margin:10px;
     padding :5px;
-    border :1px #222222 solid;
 }

@@ -138,6 +138,10 @@ function display_created_btns(target_id){
     document.getElementById(target_id).style.display = "none";
 
     word_btn_count += 1;
+
+    if(word_btn_count == word_array.length){
+        document.getElementById("check-correctness-sentence").style.display = "initial";
+    }
 }
 
 /* Reforming a sentence */
@@ -152,4 +156,5 @@ function clear(){
     document.getElementById("new-line").innerHTML = "";
     document.getElementById('formed-sentence').innerHTML = "";
     document.getElementById("reform-button").style.display = "none";
+    document.getElementById("check-correctness-sentence").style.display = "none";
 }
