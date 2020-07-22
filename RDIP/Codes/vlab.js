@@ -139,3 +139,17 @@ function display_created_btns(target_id){
 
     word_btn_count += 1;
 }
+
+/* Reforming a sentence */
+function reform_sentence(){
+    clear();
+    document.getElementById('word-buttons').innerHTML = "";
+    create_buttons(word_array);
+}
+
+function clear(){
+	document.getElementById("new-msg").innerHTML = "";
+    document.getElementById("new-line").innerHTML = "";
+    document.getElementById('formed-sentence').innerHTML = "";
+    document.getElementById("reform-button").style.display = "none";
+}
