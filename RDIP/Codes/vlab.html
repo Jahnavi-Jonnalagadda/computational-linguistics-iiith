@@ -11,6 +11,9 @@
 
 	<script type="text/javascript" src="vlab.js"></script>
 
+	<div id="heading">
+		Experiment
+	</div>
 	<!-- Language selection dropdown -->
 	<div id="mySelect">
 		<select id="selectLang" onchange="initial_message()">
@@ -31,8 +34,10 @@
 			<p id="formed-sentence" style="padding:15px;"></p>
 			<button id="reform-button" style="display: none;" onclick="reform_sentence()">Re-form the sentence</button><br>
 			<button id="check-correctness-sentence" style="display: none;" onclick="check_correctness_sentence()">Check correctness of the sentence</button>
-			<p id="correct-answer" style="display: none;">Right answer!!!</p>
+			<p id="correct-answer" style="display: none;">Right answer!!!</p><br>
 			<p id="wrong-answer" style="display: none;">Wrong answer!!!</p><br>
+			<button id="correct-sentence" style="display: none;" onclick="get_correct_sentences()">Get the correct sentence</button><br>
+			<p id="correct-sentences"></p>
 		</div>
 	</div>
 

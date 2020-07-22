@@ -74,9 +74,13 @@ var sentences = '{"English":['+
     '{"a":"एक बड़ी सी किताब वहाँ है", "b":"एक बड़ी सी किताब है वहाँ", "c":"बड़ी सी एक किताब वहाँ है", "d":"बड़ी सी एक किताब है वहाँ", "e":"वहाँ है एक बड़ी सी किताब",'+
         '"f":"वहाँ है बड़ी सी एक किताब", "g":"है वहाँ एक बड़ी सी किताब", "h":"है वहाँ बड़ी सी एक किताब"}]}';
 
+var sentences = JSON.parse(sentences);
+
+var selected_language;
 /* Printing the initial message */
 function initial_message(){
 
+	clear()
 	var selected_language = document.getElementById("selectLang").value;
 	if(selected_language == "English"){
 		document.getElementById("initial-msg-1").innerHTML = "Form a sentence (Declarative or Interrogative or any other type) from the given words";
@@ -92,6 +96,7 @@ function initial_message(){
 
 	else{
 		alert("Select Language");
+		select_display("none");
 	}
 }
 
@@ -181,12 +186,13 @@ function reform_sentence(){
     create_buttons(word_array);
 }
 
-/* Check the correctness of teh sentence */
+/* Check the correctness of the sentence */
 function check_correctness_sentence(){
+	var selected_language = document.getElementById("selectLang").value;
     var status = false;
     if(selected_language == "English"){
-        for(s in sentences.English[random_number]){
-            if(sentences.English[random_number][s] == formed_sentence){
+        for(s in sentences.English[Math.floor(Math.random() * 10)]){
+            if(sentences.English[Math.floor(Math.random() * 10)][s] == formed_sentence){
                 status = true;
                 break;
             }
@@ -197,13 +203,13 @@ function check_correctness_sentence(){
         }
         else{
             document.getElementById('wrong-answer').style.display = "initial";
-            document.getElementById('correct-sentence').style.display = "initial";         // Invoked when 'check the correctness of the sentence is clicked.
+            document.getElementById('correct-sentence').style.display = "initial";         
         }
         return;
     }
-    else if(language == "Hindi"){
-        for(s in sentences.Hindi[random_number]){
-            if(sentences.Hindi[random_number][s] == formed_sentence){
+    else if(selected_language == "Hindi"){
+        for(s in sentences.Hindi[Math.floor(Math.random() * 7)]){
+            if(sentences.Hindi[Math.floor(Math.random() * 7)][s] == formed_sentence){
                 status = true;
                 break;
             }
@@ -214,12 +220,46 @@ function check_correctness_sentence(){
         }
         else{
             document.getElementById('wrong-answer').style.display = "initial";
-            document.getElementById('correct-sentence').style.display = "initial";          // Invoked when 'check the correctness of the sentence is clicked.
+            document.getElementById('correct-sentence').style.display = "initial";          
         }
         return true;
     }
     
     
+}
+
+function get_correct_sentences(){
+	var selected_language = document.getElementById("selectLang").value;
+    document.getElementById('correct-sentences').style.display = "initial";
+
+    var value = document.getElementById('correct-sentence').innerHTML;
+
+    if(value == "Get the correct sentence" || value == "Get answers"){                            
+        document.getElementById('correct-sentence').innerHTML = "Hide the correct sentence";
+
+        if(selected_language == "English"){
+            for(s in sentences.English[Math.floor(Math.random() * 10)]){
+                var txt = document.createTextNode(sentences.English[Math.floor(Math.random() * 10)][s]);
+                document.getElementById('correct-sentences').appendChild(txt);
+                var new_line = document.createElement("br");
+                document.getElementById('correct-sentences').appendChild(new_line);
+            }
+            return;
+        }
+        else if(selected_language == "Hindi"){
+            for(s in sentences.Hindi[Math.floor(Math.random() * 7)]){
+                var txt = document.createTextNode(sentences.Hindi[Math.floor(Math.random() * 7)][s]);
+                document.getElementById('correct-sentences').appendChild(txt);
+                var new_line = document.createElement("br");
+                document.getElementById('correct-sentences').appendChild(new_line);
+            }
+            return;
+        }
+    }
+    else if(value == "Hide the correct sentence"){
+        document.getElementById('correct-sentence').innerHTML = "Get answers";
+        document.getElementById('correct-sentences').innerHTML = "";
+    }
 }
 
 function clear(){
@@ -228,4 +268,16 @@ function clear(){
     document.getElementById('formed-sentence').innerHTML = "";
     document.getElementById("reform-button").style.display = "none";
     document.getElementById("check-correctness-sentence").style.display = "none";
+    document.getElementById('correct-answer').style.display = "none";
+    document.getElementById('wrong-answer').style.display = "none";
+    document.getElementById('correct-sentence').style.display = "none";
+    document.getElementById('correct-sentences').style.display = "none";
+    document.getElementById('correct-sentence').innerHTML = "Get the correct sentence";
+    document.getElementById('correct-sentences').innerHTML = "";
+}
+
+function select_display(val){
+    document.getElementById("word-buttons").style.display = val;
+    document.getElementById("new-msg").style.display = val;
+    document.getElementById("new-line").style.display = val;
 }

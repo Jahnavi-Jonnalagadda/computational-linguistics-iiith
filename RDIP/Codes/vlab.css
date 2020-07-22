@@ -1,3 +1,8 @@
+#heading{
+    font-size: 30px;
+    color: #222222;
+}
+
 #selectLang{
     margin-top: 250px;
     margin-right: 100px;
@@ -60,11 +65,7 @@
     text-align: center;
 }
 
-.align{
-    margin-top:10px;
-}
-
-#reform-button, #check-correctness-sentence{
+#reform-button, #check-correctness-sentence,#correct-sentence{
     cursor: pointer;
     margin:10px;
     padding :5px;
