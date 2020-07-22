@@ -6,40 +6,31 @@
 	<meta http-equiv="Content-Language" content="hi">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
+
 <body>
 
 	<script type="text/javascript" src="vlab.js"></script>
 
-	
-	<div id="selectLang">
-		<select id="mySelect" onchange="dropDown()">
+	<!-- Language selection dropdown -->
+	<div id="mySelect">
+		<select id="selectLang" onchange="initial_message()">
 		  <option>---Select Language---</option>
 		  <option>English</option>
 		  <option>Hindi</option>
 		</select>
 	</div>
 
-		<div id="text1">
-			<p id="select"></p>
+	<div>
+		<p id="initial-msg-1"></p>
+		<p id="initial-msg-2"></p>
+		<div id="buttons">
+			<p id="word-buttons" onclick="new_message(event.target.id);display_created_btns(event.target.id)"></p><br><br>
 		</div>
-		<div id="text2">
-			<p id="select1"></p>
+		<p id="new-msg"></p><i id="new-line"></i>
+		<div id="sentence">
+			<p id="formed-sentence" style="padding:15px;"></p>
+			<button id="reform-button" style="display: none;" onclick="reform_sentence()">Re-form the sentence</button><br>
 		</div>
-		<div>
-			<p id="eng"></p>
-		</div>
-		<div>
-			<p id="hin"></p>
-		</div>
-		<div>
-			<p id="beng"></p>
-		</div>
-		<div>
-			<p id="bhin"></p>
-		</div>
-	
-	  	
-	
-</body>
-</html>
+	</div>
 
+</html>

@@ -1,4 +1,4 @@
-var engSent = ["John ate an apple before afternoon", "before afternoon John ate an apple", "John before afternoon ate an apple",
+var english_sentences = ["John ate an apple before afternoon", "before afternoon John ate an apple", "John before afternoon ate an apple",
 
 				"some students like to study in the night", "at night some students like to study",
 
@@ -25,7 +25,7 @@ var engSent = ["John ate an apple before afternoon", "before afternoon John ate 
 				"I bought a book yesterday that I told her", "yesterday I bought a book that I told her"
 			]
 
-var hinSent = ["राम और श्याम बाजार गयें", "राम और श्याम गयें बाजार", "बाजार गयें राम और श्याम", "गयें बाजार राम और श्याम",
+var hindi_sentences = ["राम और श्याम बाजार गयें", "राम और श्याम गयें बाजार", "बाजार गयें राम और श्याम", "गयें बाजार राम और श्याम",
 
 				"राम सोया और श्याम भी", "श्याम सोया और राम भी", "सोया श्याम और राम भी", "सोया राम और श्याम भी",
 
@@ -44,74 +44,98 @@ var hinSent = ["राम और श्याम बाजार गयें", 
 				"वहाँ है बड़ी सी एक किताब", "है वहाँ एक बड़ी सी किताब", "है वहाँ बड़ी सी एक किताब"
 			]
 
-function dropDown() {
+/* Printing the initial message */
+function initial_message(){
 
-	var val = document.getElementById("mySelect").value;
-	if (val == "English"){
-		document.getElementById("select").innerHTML = "Form a sentence (Declarative or Interrogative or any other type) from the given words";
-		document.getElementById("select1").innerHTML = "(select the buttons in proper order)";
-
-		var ranNum = Math.floor(Math.random() * (engSent.length));
-		e = engSent[ranNum];
-		e = e.split(" ");
-
-		wordRandomize(e);
-		printeBtn(e);
-
-		document.getElementById("beng").style.display = "block";
-		document.getElementById("bhin").style.display = "none";
+	var selected_language = document.getElementById("selectLang").value;
+	if(selected_language == "English"){
+		document.getElementById("initial-msg-1").innerHTML = "Form a sentence (Declarative or Interrogative or any other type) from the given words";
+		document.getElementById("initial-msg-2").innerHTML = "(select the buttons in proper order)";
+		sentence_randomize(english_sentences);
 	}
-	else if(val == "Hindi"){
-		document.getElementById("select").innerHTML = "Form a sentence (Declarative or Interrogative or any other type) from the given words";
-		document.getElementById("select1").innerHTML = "(select the buttons in proper order)";
 
-		var ranNum = Math.floor(Math.random() * (hinSent.length));
-		h = hinSent[ranNum];
-		h = h.split(" ");
-		wordRandomize(h);
-		printhBtn(h);
-
-		document.getElementById("bhin").style.display = "block";
-		document.getElementById("beng").style.display = "none"
+	else if(selected_language == "Hindi"){
+		document.getElementById("initial-msg-1").innerHTML = "Form a sentence (Declarative or Interrogative or any other type) from the given words";
+		document.getElementById("initial-msg-2").innerHTML = "(select the buttons in proper order)";
+		sentence_randomize(hindi_sentences);
 	}
+
 	else{
 		alert("Select Language");
 	}
 }
 
-function wordRandomize(array){
-	var len = array.length;
-	console.log(array);
+/* Selecting a random sentence */
+function sentence_randomize(array){
+
+	document.getElementById('word-buttons').innerHTML = "";
+
+	var random_number = Math.floor(Math.random() * (array.length));
+	selected_sentence = array[random_number];
+	word_randomize(selected_sentence);
+}
+
+/* Split the sentence into an array, shuffle the words and create buttons*/
+function word_randomize(sentence){
+	word_array = sentence.split(" ");
+	randomized_word_array = shuffle_words(word_array);
+	create_buttons(randomized_word_array);
+}
+
+/* Shuffling of words */
+function shuffle_words(array){
+	var word_array_len = array.length;
 	var temp;
 
-	while (len > 0){
-		idx = Math.floor(Math.random() * len);
-		len--;
+	while (word_array_len > 0){
+		idx = Math.floor(Math.random() * word_array_len);
+		word_array_len--;
 
-		temp = array[len];
-        array[len] = array[idx];
+		temp = array[word_array_len];
+        array[word_array_len] = array[idx];
         array[idx] = temp;
 	}
 	return array;
 }
 
-function printeBtn(arr){
+/* Create buttons of the shuffled words */
+function create_buttons(array){
 
-	let allBtn = "";
-	for(i=0; i<arr.length; i++){
-		eachBtn = "<button>" + arr[i] + "</button>";
-		allBtn += eachBtn;
-	}
-	document.getElementById("beng").innerHTML = allBtn;
+	var j = "1";
+    for(i = 0; i < array.length; i++){
+        var button = document.createElement("button");
+        button.setAttribute("id", j);
+        button.setAttribute("value",array[i]);
+        j += String(parseFloat(j) + 1);
+        button.innerHTML = array[i];
+        document.getElementById('word-buttons').appendChild(button);
+        
+    }
+    document.getElementById('formed-sentence').value = String();
+    word_btn_count = 0;
 }
 
-function printhBtn(arr){
-
-	let allBtn = "";
-	for(i=0;i<arr.length;i++){
-		eachBtn = "<button>" + arr[i] + "</button>";
-		allBtn += eachBtn;	
-	}
-	document.getElementById("bhin").innerHTML = allBtn;
+/* Display a new message */
+function new_message(target_id){
+    if(target_id == "word-buttons")
+        return ;
+    document.getElementById('new-msg').innerHTML = "Formed Sentence";
+    document.getElementById('new-line').innerHTML = "(after selecting words):";
+    document.getElementById("reform-button").style.display = "initial";
 }
 
+/* Display the created buttons, onclick of any button display its respective text and button disappears */
+function display_created_btns(target_id){
+    if(target_id == "word-buttons")
+        return ;
+    if(word_btn_count == 0){
+        document.getElementById('formed-sentence').innerHTML = String(document.getElementById(target_id).value);
+    }
+    else{
+        document.getElementById('formed-sentence').innerHTML = String(document.getElementById('formed-sentence').innerHTML) + " " + String(document.getElementById(target_id).value);
+    }
+    formed_sentence = document.getElementById('formed-sentence').innerHTML;
+    document.getElementById(target_id).style.display = "none";
+
+    word_btn_count += 1;
+}

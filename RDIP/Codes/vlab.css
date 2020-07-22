@@ -1,26 +1,20 @@
-#mySelect{
+#selectLang{
     margin-top: 250px;
     margin-right: 100px;
     margin-bottom: 50px;
     margin-left: 550px;
 }
 
-#select1{
+#initial-msg-1{
     margin-top: 20px;
-}
-
-#select2{
-    margin-top: 30px;
-}
-
-#text1{
     margin-left: 300px;
     font-family: Lucida Sans Unicode;
     color: #0000AA;
     font-weight: bold;
 }
 
-#text2{
+#initial-msg-2{
+    margin-top: 30px;
     margin-left: 500px;
     line-height: 0px;
     font-style: italic;
@@ -29,16 +23,50 @@
     font-family: Lucida Sans Unicode;
 }
 
-#beng{
-    margin-top: 30px;
+#word-buttons button{
+    cursor: pointer;
+    margin: 20px;
+    padding: 5px;
+}
+
+#buttons{
     text-align: center;
 }
 
-#bhin{
-    margin-top: 30px;
+#new-msg{
+    margin-top: 20px;
+    margin-left: 300px;
+    font-family: Lucida Sans Unicode;
+    color: #0000AA;
+    font-weight: bold;
+}
+
+#new-line{
+    margin-top: 0px;
+    margin-left: 450px;
+    text-align: center;
+    line-height: 0px;
+    font-size: 13px;
+    color: #0000FF;
+    font-family: Lucida Sans Unicode;
+}
+
+#formed-sentence{
+    font-size: 25px;
+    color: #444444;
+}
+
+#sentence{
     text-align: center;
 }
 
-button{
-    margin-right: 25px;
+.align{
+    margin-top:10px;
+}
+
+#reform-button{
+    cursor: pointer;
+    margin:10px;
+    padding :5px;
+    border :1px #222222 solid;
 }
